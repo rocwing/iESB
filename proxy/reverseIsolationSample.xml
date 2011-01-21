@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse" name="reverseIsolationSample" transports="http" startOnLoad="true" trace="disable">
+    <target>
+        <inSequence>
+            <log level="full" separator=","/>
+            <property name="transport.vfs.ReplyFileName" expression="fn:concat(get-property('SYSTEM_TIME'), '.xml')" scope="transport" type="STRING"/>
+            <property name="OUT_ONLY" value="true" scope="default" type="STRING"/>
+            <send>
+                <endpoint name="endpoint_urn_uuid_C174389D18BB934F3A99556749360515-714908070">
+                    <address uri="vfs:file:///D:/df8003d/glTest"/>
+                </endpoint>
+            </send>
+        </inSequence>
+    </target>
+    <publishWSDL key="gov:/OutageRecord.wsdl">
+        <resource location="OutageRecord.xsd" key="gov:/OutageRecord.xsd"/>
+        <resource location="cimBase.xsd" key="gov:/cimBase.xsd"/>
+    </publishWSDL>
+</proxy>

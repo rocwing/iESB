@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse" name="OutageRecordProxy" transports="vfs" startOnLoad="true" trace="disable">
+    <target>
+        <inSequence>
+            <log/>
+            <clone>
+                <target>
+                    <endpoint name="endpoint_urn_uuid_13FCA58A6D813A9A752969682210858-582757151">
+                        <address uri="http://192.168.1.20/cgi-bin/suboar.cgi"/>
+                    </endpoint>
+                </target>
+                <target>
+                    <endpoint name="endpoint_urn_uuid_13FCA58A6D813A9A7555923917600731987315556">
+                        <address uri="http://192.168.1.18/cgi-bin/suboar.cgi"/>
+                    </endpoint>
+                </target>
+            </clone>
+        </inSequence>
+        <outSequence>
+            <property name="transport.vfs.ReplyFileName" expression="fn:concat(fn:substring-after(get-property('MessageID'), 'urn:uuid:'), '.xml')" scope="transport"/>
+            <property name="OUT_ONLY" value="true"/>
+            <send>
+                <endpoint name="endpoint_urn_uuid_4855844D33E21A82E668655324096679-1668108983">
+                    <address uri="vfs:file:///D:/glTest/out"/>
+                </endpoint>
+            </send>
+        </outSequence>
+    </target>
+    <publishWSDL key="gov:/OutageRecord.wsdl">
+        <resource location="OutageRecord.xsd" key="gov:/OutageRecord.xsd"/>
+        <resource location="cimBase.xsd" key="gov:/cimBase.xsd"/>
+    </publishWSDL>
+    <parameter name="transport.vfs.ActionAfterProcess">MOVE</parameter>
+    <parameter name="transport.PollInterval">5</parameter>
+    <parameter name="transport.vfs.MoveAfterProcess">file:///D:/glTest/original</parameter>
+    <parameter name="transport.vfs.FileURI">file:///D:/df8003d/glTest</parameter>
+    <parameter name="transport.vfs.MoveAfterFailure">file:///D:/glTest/original</parameter>
+    <parameter name="transport.vfs.FileNamePattern">.*.xml</parameter>
+    <parameter name="transport.vfs.ContentType">text/xml</parameter>
+    <parameter name="transport.vfs.ActionAfterFailure">MOVE</parameter>
+</proxy>

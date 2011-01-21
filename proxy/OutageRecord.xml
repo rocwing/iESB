@@ -1,0 +1,29 @@
+<proxy xmlns="http://ws.apache.org/ns/synapse" name="OutageRecord" transports="tcp" statistics="disable" trace="disable" startOnLoad="true">
+   <target>
+      <inSequence>
+         <log level="full" />
+         <clone>
+            <target>
+               <endpoint name="endpoint_urn_uuid_24AF56F3D258258C32436858701911843-1772924736">
+                  <address uri="http://192.168.1.20/cgi-bin/suboar.cgi" />
+               </endpoint>
+            </target>
+            <target>
+               <endpoint name="endpoint_urn_uuid_712568E8965792AB724145842534402781485891933">
+                  <address uri="http://192.168.1.18/cgi-bin/suboar.cgi" />
+               </endpoint>
+            </target>
+            <target>
+               <endpoint name="endpoint_urn_uuid_712568E8965792AB724170680439920081192879943">
+                  <address uri="vfs:file:///D:/glTest" />
+               </endpoint>
+            </target>
+         </clone>
+      </inSequence>
+   </target>
+   <publishWSDL key="gov:/OutageRecord.wsdl">
+      <resource location="OutageRecord.xsd" key="gov:/OutageRecord.xsd" />
+      <resource location="cimBase.xsd" key="gov:/cimBase.xsd" />
+   </publishWSDL>
+</proxy>
+                                

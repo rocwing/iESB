@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse" name="vfsTest" transports="https http" startOnLoad="true" trace="disable">
+    <target>
+        <endpoint name="endpoint_urn_uuid_9F5E380EBC03990A7D3071016925354-1255658798">
+            <address uri="vfs:file:///D:/df8600data"/>
+        </endpoint>
+        <inSequence>
+            <property name="transport.vfs.ReplyFileName" expression="fn:concat(get-property('SYSTEM_TIME'), '.xml')" scope="transport"/>
+            <property name="OUT_ONLY" value="true" scope="default" type="STRING"/>
+        </inSequence>
+    </target>
+    <publishWSDL key="gov:/simpleService.xml"/>
+</proxy>

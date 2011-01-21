@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:a="http://langdale.com.au/2005/Message#" xmlns:sawsdl="http://www.w3.org/ns/sawsdl" targetNamespace="http://iec.ch/TC57/2007/profile#" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://langdale.com.au/2005/Message#" xmlns:m="http://iec.ch/TC57/2007/profile#">
+<xs:annotation/>
+<xs:complexType name="TroubleTicket" sawsdl:modelReference="http://iec.ch/TC57/2008/CIM-schema-cim13#TroubleTicket">
+<xs:annotation>
+<xs:documentation>A document used to report electrical trouble. The trouble may either be an outage or non-outage problem, such as power quality. It must always be associated with an Incident Record.</xs:documentation>
+<xs:documentation>Note that a separate Activity Record is created for each call associated with an instance of Trouble Ticket. The time of a call is stored in ActivityRecord.createdOn and comments are recorded in ActivityRecord.remarks.</xs:documentation>
+</xs:annotation>
+<xs:sequence>
+<xs:element name="advice" minOccurs="1" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2008/CIM-schema-cim13#TroubleTicket.advice">
+<xs:annotation>
+<xs:documentation>Advice already given to the customer at time when trouble was first reported.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="callBack" minOccurs="1" maxOccurs="1" type="xs:boolean" sawsdl:modelReference="http://iec.ch/TC57/2008/CIM-schema-cim13#TroubleTicket.callBack">
+<xs:annotation>
+<xs:documentation>True if requested to customer when someone is about to arrive at their premises.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="estimatedRestoreDateTime" minOccurs="1" maxOccurs="1" type="xs:dateTime" sawsdl:modelReference="http://iec.ch/TC57/2008/CIM-schema-cim13#TroubleTicket.estimatedRestoreDateTime">
+<xs:annotation>
+<xs:documentation>Estimated restoration date and time last provided to the customer.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="firstCallDateTime" minOccurs="1" maxOccurs="1" type="xs:dateTime" sawsdl:modelReference="http://iec.ch/TC57/2008/CIM-schema-cim13#TroubleTicket.firstCallDateTime">
+<xs:annotation>
+<xs:documentation>Date and time trouble call first received. The date and time of subsequent calls by the same customer for the same trouble are recorded in associated Activity Records.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="hazardCode" minOccurs="1" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2008/CIM-schema-cim13#TroubleTicket.hazardCode">
+<xs:annotation>
+<xs:documentation>Code for a reported hazard condition.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="priority" minOccurs="1" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2008/CIM-schema-cim13#TroubleTicket.priority">
+<xs:annotation>
+<xs:documentation>Priority of trouble call.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

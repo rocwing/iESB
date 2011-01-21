@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:a="http://langdale.com.au/2005/Message#" xmlns:sawsdl="http://www.w3.org/ns/sawsdl" targetNamespace="http://iec.ch/TC57/2007/profile#" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://langdale.com.au/2005/Message#" xmlns:m="http://iec.ch/TC57/2007/profile#">
+<xs:annotation/>
+<xs:complexType name="SwitchingSchedule" sawsdl:modelReference="http://iec.ch/TC57/2008/CIM-schema-cim13#SwitchingSchedule">
+<xs:annotation>
+<xs:documentation>Document describing a sequence of steps to perform an item of work, for example to isolate some plant with regard to safety, equipment ratings, and standards of customer service.</xs:documentation>
+<xs:documentation>Note 1: SwitchingSchedule is intended to describe the full operational details for switching for real time operation which includes other operations such as grounding, applying safety documents etc.</xs:documentation>
+<xs:documentation>Note 2: The association to ErpPerson suits the UK practice of quoting specific names (e.g the crew foreman). The association to Crew is for US practice.</xs:documentation>
+</xs:annotation>
+<xs:sequence>
+<xs:element name="endDateTime" minOccurs="1" maxOccurs="1" type="xs:dateTime" sawsdl:modelReference="http://iec.ch/TC57/2008/CIM-schema-cim13#SwitchingSchedule.endDateTime">
+<xs:annotation>
+<xs:documentation>Completion date and time of switching.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="reason" minOccurs="1" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2008/CIM-schema-cim13#SwitchingSchedule.reason">
+<xs:annotation>
+<xs:documentation>Reason for switching.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="startDateTime" minOccurs="1" maxOccurs="1" type="xs:dateTime" sawsdl:modelReference="http://iec.ch/TC57/2008/CIM-schema-cim13#SwitchingSchedule.startDateTime">
+<xs:annotation>
+<xs:documentation>Start date and time of switching.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

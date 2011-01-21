@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse" name="MyServiceProxy" transports="http" startOnLoad="true" trace="disable">
+    <target>
+        <inSequence>
+            <log level="full" separator=","/>
+            <header xmlns:wsa="http://www.w3.org/2005/08/addressing" name="wsa:Action" value="http://www.iec.ch/61968/PublishEvent"/>
+            <header xmlns:wsa="http://www.w3.org/2005/08/addressing" name="wsa:To" value="tcp://192.168.1.19:9998//services/OutageRecord"/>
+            <property name="OUT_ONLY" value="true" scope="default" type="STRING"/>
+            <property name="FORCE_SC_ACCEPTED" value="true" scope="axis2" type="STRING"/>
+            <send>
+                <endpoint name="endpoint_urn_uuid_42AA2A15FF229A25C428679591711521-697837432">
+                    <address uri="tcp://192.168.1.112:9998//services/OutageRecord" trace="disable" encoding="UTF-8">
+                        <enableAddressing version="final"/>
+                        <suspendOnFailure>
+                            <initialDuration>0</initialDuration>
+                            <progressionFactor>1.0</progressionFactor>
+                            <maximumDuration>0</maximumDuration>
+                        </suspendOnFailure>
+                    </address>
+                </endpoint>
+            </send>
+        </inSequence>
+        <outSequence>
+            <log level="full" category="TRACE" separator=","/>
+        </outSequence>
+    </target>
+    <publishWSDL key="gov:/OutageRecord.wsdl">
+        <resource location="OutageRecord.xsd" key="gov:/OutageRecord.xsd"/>
+        <resource location="cimBase.xsd" key="gov:/cimBase.xsd"/>
+    </publishWSDL>
+</proxy>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:a="http://langdale.com.au/2005/Message#" xmlns:sawsdl="http://www.w3.org/ns/sawsdl" targetNamespace="http://dongfang-china.com#" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://langdale.com.au/2005/Message#" xmlns:m="http://dongfang-china.com#">
+<xs:annotation/>
+<xs:complexType name="OutageRecord" sawsdl:modelReference="http://iec.ch/TC57/2008/CIM-schema-cim13#OutageRecord">
+<xs:annotation>
+<xs:documentation>A document describing details of an outage in part of the electrical network, typically produced by a SCADA system following a breaker trip, or within a Trouble Call System by grouping customer calls. This has an associated OutageStep for each supply point. Primary cause of the outage is captured in 'category'.</xs:documentation>
+<xs:documentation>In some countries all outage restoration is performed using a SwitchingSchedule which complements the OutageRecord and records the ErpPersons (crew) and any planned Work. In other systems, it may be acceptable to manage outages including new WorkTasks without switching schedules.</xs:documentation>
+<xs:documentation>Note: The relationship between OutageRecord and ErpPerson and Crew is inherited as each is a type of Document.</xs:documentation>
+</xs:annotation>
+<xs:sequence>
+<xs:element name="damageCode" minOccurs="1" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2008/CIM-schema-cim13#OutageRecord.damageCode">
+<xs:annotation>
+<xs:documentation>The damage code relative to the associated PowerSystemResource(s) and/or Asset(s). Examples include broken, burnout, failure, flashed (burned), manually operated, wire down, no damage - rolling blackout, none.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="description" minOccurs="1" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2008/CIM-schema-cim13#IdentifiedObject.description">
+<xs:annotation>
+<xs:documentation>The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="endDateTime" minOccurs="1" maxOccurs="1" type="xs:dateTime" sawsdl:modelReference="http://iec.ch/TC57/2008/CIM-schema-cim13#OutageRecord.endDateTime">
+<xs:annotation>
+<xs:documentation>Date and time restoration was completed for all customers impacted by this outage.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="isPlanned" minOccurs="1" maxOccurs="1" type="xs:boolean" sawsdl:modelReference="http://iec.ch/TC57/2008/CIM-schema-cim13#OutageRecord.isPlanned">
+<xs:annotation>
+<xs:documentation>True if planned, false otherwise (for example due to a breaker trip).</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="localName" minOccurs="1" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2008/CIM-schema-cim13#IdentifiedObject.localName">
+<xs:annotation>
+<xs:documentation>The localName is a human readable name of the object. It is only used with objects organized in a naming hierarchy. The simplest naming hierarchy has just one parent (the root) giving a flat naming hierarchy. However, the naming hierarchy usually has several levels, e.g. Substation, VoltageLevel, Equipment etc. Children of the same parent have names that are unique among them. If the uniqueness requirement cannot be met IdentifiedObject.localName shall not be used, use IdentifiedObject.name  instead.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="mode" minOccurs="1" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2008/CIM-schema-cim13#OutageRecord.mode">
+<xs:annotation>
+<xs:documentation>Value of ErpOrganisation.mode at the time of OutageRecord.startDateTime.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="name" minOccurs="1" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2008/CIM-schema-cim13#IdentifiedObject.name">
+<xs:annotation>
+<xs:documentation>The name is a free text human readable name of the object. It may be non unique and may not correlate to a naming hierarchy.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="pathName" minOccurs="1" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2008/CIM-schema-cim13#IdentifiedObject.pathName">
+<xs:annotation>
+<xs:documentation>The pathname is a system unique name composed from all IdentifiedObject.localNames in a naming hierarchy path from the object to the root.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="title" minOccurs="1" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2008/CIM-schema-cim13#Document.title">
+<xs:annotation>
+<xs:documentation>Title of the document.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="OutageSteps" minOccurs="1" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/2008/CIM-schema-cim13#OutageRecord.OutageSteps">
+<xs:annotation/>
+<xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2008/CIM-schema-cim13#OutageStep">
+<xs:sequence>
+<xs:element name="callerCount" minOccurs="1" maxOccurs="1" type="xs:integer" sawsdl:modelReference="http://iec.ch/TC57/2008/CIM-schema-cim13#OutageStep.callerCount">
+<xs:annotation>
+<xs:documentation>Number of customers phoning in.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="description" minOccurs="1" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2008/CIM-schema-cim13#IdentifiedObject.description">
+<xs:annotation>
+<xs:documentation>The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="fatality" minOccurs="1" maxOccurs="1" type="xs:boolean" sawsdl:modelReference="http://iec.ch/TC57/2008/CIM-schema-cim13#OutageStep.fatality">
+<xs:annotation>
+<xs:documentation>True if fatalities reported by caller or engineer.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="localName" minOccurs="1" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2008/CIM-schema-cim13#IdentifiedObject.localName">
+<xs:annotation>
+<xs:documentation>The localName is a human readable name of the object. It is only used with objects organized in a naming hierarchy. The simplest naming hierarchy has just one parent (the root) giving a flat naming hierarchy. However, the naming hierarchy usually has several levels, e.g. Substation, VoltageLevel, Equipment etc. Children of the same parent have names that are unique among them. If the uniqueness requirement cannot be met IdentifiedObject.localName shall not be used, use IdentifiedObject.name  instead.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="name" minOccurs="1" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2008/CIM-schema-cim13#IdentifiedObject.name">
+<xs:annotation>
+<xs:documentation>The name is a free text human readable name of the object. It may be non unique and may not correlate to a naming hierarchy.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="pathName" minOccurs="1" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2008/CIM-schema-cim13#IdentifiedObject.pathName">
+<xs:annotation>
+<xs:documentation>The pathname is a system unique name composed from all IdentifiedObject.localNames in a naming hierarchy path from the object to the root.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="specialCustomerCount" minOccurs="1" maxOccurs="1" type="xs:integer" sawsdl:modelReference="http://iec.ch/TC57/2008/CIM-schema-cim13#OutageStep.specialCustomerCount">
+<xs:annotation>
+<xs:documentation>Number of customers with high reliability required.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="totalCustomerCount" minOccurs="1" maxOccurs="1" type="xs:integer" sawsdl:modelReference="http://iec.ch/TC57/2008/CIM-schema-cim13#OutageStep.totalCustomerCount">
+<xs:annotation>
+<xs:documentation>Number of customers connected to the PowerSystemResource.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="ConductingEquipmentRoles" minOccurs="1" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/2008/CIM-schema-cim13#OutageStep.ConductingEquipmentRoles">
+<xs:annotation/>
+<xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2008/CIM-schema-cim13#OutageStepPsrRole">
+<xs:sequence>
+<xs:element name="pathName" minOccurs="1" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2008/CIM-schema-cim13#IdentifiedObject.pathName">
+<xs:annotation>
+<xs:documentation>The pathname is a system unique name composed from all IdentifiedObject.localNames in a naming hierarchy path from the object to the root.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="noPowerInterval" minOccurs="1" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/2008/CIM-schema-cim13#OutageStep.noPowerInterval">
+<xs:annotation>
+<xs:documentation>Date and time interval between loss and restoration of power.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2008/CIM-schema-cim13#DateTimeInterval">
+<xs:sequence>
+<xs:element name="end" minOccurs="1" maxOccurs="1" type="xs:dateTime" sawsdl:modelReference="http://iec.ch/TC57/2008/CIM-schema-cim13#DateTimeInterval.end">
+<xs:annotation>
+<xs:documentation>Date and time that this interval ended.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="start" minOccurs="1" maxOccurs="1" type="xs:dateTime" sawsdl:modelReference="http://iec.ch/TC57/2008/CIM-schema-cim13#DateTimeInterval.start">
+<xs:annotation>
+<xs:documentation>Date and time that this interval started.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
